@@ -14,8 +14,8 @@ use App\User;
 class UserController extends Controller
 {
     /**
-     * POST New information in to user
-     * POST REQUEST
+     * get New information in to user
+     * GET REQUEST
      * @param  int  $id
      * @return Response
      */
@@ -23,6 +23,17 @@ class UserController extends Controller
     {
          $user = User::where('uid', $id);
          return response()->json($user);
+    }
+
+    /**
+     * Store single user information
+     * POST REQUEST
+     * @param  int  $id
+     * @return Response
+     */
+    public function store($id)
+    {
+        //
     }
 
     /**
