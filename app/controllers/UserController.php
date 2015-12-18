@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 
 /*
 * This class gets single user information.
@@ -20,7 +21,8 @@ class UserController extends Controller
      */
     public function index($id)
     {
-        //
+         $user = User::where('uid', $id);
+         return response()->json($user);
     }
 
     /**
