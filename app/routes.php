@@ -11,9 +11,17 @@
 |
 */
 
+// Since were using laravel 4 were gonna use this to make a controller 
+// 
+
 Route::get('/', function()
 {
 	return View::make('hello');
 });
 
-Route::resource('user', 'UserController');
+//Route::resource('user', 'UserController');
+
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::resource('user', 'UsersController');
+});

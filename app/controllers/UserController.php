@@ -11,18 +11,17 @@ use App\User;
 /*
 * This class gets single user information.
 */
-class UserController extends Controller
+class UserController extends \BaseController
 {
     /**
      * get New information in to user
      * GET REQUEST
-     * @param  int  $id
      * @return Response
      */
-    public function index($id)
+
+    public function index()
     {
-         $user = User::where('uid', $id);
-         return response()->json($user);
+    return 'Hello, API';
     }
 
     /**
@@ -34,7 +33,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User;
-        $user->uid = $request->uid;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->age =  $request->age;
