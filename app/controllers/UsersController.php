@@ -1,15 +1,18 @@
 <?php
+use Illuminate\Http\Request;
+use App\Models\Users;
+
 
 class UsersController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * POST
+	 * GET
 	 * @return Response
 	 */
 	public function index()
 	{
-		return "Hello";
+        return Users::where('uid',1)->get();
 	}
 
 
@@ -21,27 +24,29 @@ class UsersController extends \BaseController {
 	public function create()
 	{
 		//
-		return 'saved';
+
 	}
 
 
 	/**
 	 * Store a newly created resource in storage.
-	 * GET
+	 * POST
 	 * @return Response
 	 */
 	public function store()
 	{
-		/*$user = new User;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->age =  $request->age;
-        $user->city = $request->city;
-        $user->state = $request->state;
-        $user->country = $request->country;
-        $user->about = $request->about;
-        $user->save();*/
-        return 'saved';
+		$Users = new Users();
+		$Users->first_name = 'Michael';
+		$Users->last_name = 'Pierre';
+		$Users->age = '31';
+		$Users->city = 'Orlando';
+		$Users->state = 'Florida';
+		$Users->country = 'USA';
+		$Users->about = 'Cool Dude';
+		$Users->save();
+
+		return Users::where('uid',$Users->id)->get();
+
 	}
 
 

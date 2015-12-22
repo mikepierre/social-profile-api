@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Model\Users;
 
 /*
 * This class gets single user information.
@@ -21,7 +21,19 @@ class UserController extends \BaseController
 
     public function index()
     {
-    return 'Hello, API';
+    //return 'Hello, API';
+        /*
+           $user = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->age =  $request->age;
+        $user->city = $request->city;
+        $user->state = $request->state;
+        $user->country = $request->country;
+        $user->about = $request->about;
+
+        $user->save();
+        */
     }
 
     /**
