@@ -4,9 +4,9 @@ namespace App\Models;
 use Eloquent;
 use DB; 
 
-class Users extends Eloquent{ 
+class Messages extends Eloquent{ 
 
-    protected $table = 'users';
+    protected $table = 'messages';
     public $timestamps = false;
 
 }

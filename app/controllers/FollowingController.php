@@ -1,9 +1,9 @@
 <?php
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\Following;
 
 
-class UsersController extends \BaseController {
+class FollowingController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -12,7 +12,8 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return Users::where('uid',1)->get();
+		$uid = Input::get('uid');
+        return Following::where('uid',$uid)->get();
 	}
 
 
@@ -34,17 +35,15 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$Users = new Users();
-		$Users->first_name = 'Michael';
-		$Users->last_name = 'Pierre';
-		$Users->age = '31';
-		$Users->city = 'Orlando';
-		$Users->state = 'Florida';
-		$Users->country = 'USA';
-		$Users->about = 'Cool Dude';
-		$Users->save();
+		$uid = Input::get('uid');
+		$following_uid = Input::get('following_uid');
 
-		return Users::where('uid',$Users->id)->get();
+		$Following = new Following();
+		$Following->following_uid = $following_uid;
+		$Following->uid= $uid;
+		$Following->save();
+
+		return Users::where('uid',$uid)->get();
 
 	}
 

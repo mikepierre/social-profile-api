@@ -1,9 +1,9 @@
 <?php
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\Messages;
 
 
-class UsersController extends \BaseController {
+class MessageController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -12,7 +12,17 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return Users::where('uid',1)->get();
+		$uid_from = Input::get('uid_from');
+		$uid = Input::get('uid');
+		if(!empty($uid_from))
+		{
+			// get all messsages from uid to / from
+			return Messages::whereRaw('uid_from = '.$uid_from.' AND uid_to='.$uid.'')->get();
+		} else 
+		{
+			// get list of users
+			return Messages::whereRaw('uid_to='.$uid.'')->get();
+		}
 	}
 
 
@@ -34,18 +44,18 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$Users = new Users();
-		$Users->first_name = 'Michael';
-		$Users->last_name = 'Pierre';
-		$Users->age = '31';
-		$Users->city = 'Orlando';
-		$Users->state = 'Florida';
-		$Users->country = 'USA';
-		$Users->about = 'Cool Dude';
-		$Users->save();
+		$uid_to = Input::get('uid_to');
+		$uid_from = Input::get('uid_from');
+		$message  = Input::get('message');
 
-		return Users::where('uid',$Users->id)->get();
+		$Messages = new Messages();
+		$Messages->uid_to = $following_uid;
+		$Messages->uid_from= $uid;
+		$Messages->message = $message;
+		$Messages->save();
 
+		//return Users::where('uid',$uid)->get();
+		return '';
 	}
 
 
